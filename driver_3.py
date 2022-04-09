@@ -28,11 +28,41 @@ def board_to_string(board):
         for c in COL:
             ordered_vals.append(str(board[r + c]))
     return ''.join(ordered_vals)
-
-
+def forward_check(board, i, row, col):
+    rows=board[row]
+    column=[board[r][col] for r in range(10)]
+    if i in rows:
+        return False
+    if i in column:
+        return False
+    #building the 3x3 square
+    r3=(row//3)*3
+    c3=(col//3)*3 
+    Square=[board[y][z] for y in range(r3, r3+3) for z in range(c3, c3+3)]
+    if i in Square:
+        return False
+def solver(board):
+    f=None
+    for i in range(10):
+        for j in range(10):
+            if board[i][j]==0
+            f=[i,j]
+    if not f:
+        return true
+    for i in range(1,10):
+        if check(board, i, f[0], f[1]):
+            board[f[0]][f[1]]= i
+            if eval(board):
+                return True
+            board[f[0]][f[1]]=0
+    return False
+    #this takes in the constraints on the particular position and returns the heuristic
+    #order of approach will be 1-9 
 def backtracking(board):
     """Takes a board and returns solved board."""
-    # TODO: implement this
+    # need to implement backtracking here
+    #heuristic evaluation broken out into a seperate def
+    solver(board)
     solved_board = board
     return solved_board
 
