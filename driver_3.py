@@ -29,32 +29,41 @@ def board_to_string(board):
             ordered_vals.append(str(board[r + c]))
     return ''.join(ordered_vals)
 def forward_check(board, i, row, col):
-    rows=board[row]
-    column=[board[r][col] for r in range(10)]
-    if i in rows:
+    frow=[board[row+c] for c in COL]
+    fc=[board[r+col] for r in ROW]
+    if i in frow:
         return False
-    if i in column:
+    if i in fc:
         return False
     #building the 3x3 square
-    r3=(row//3)*3
-    c3=(col//3)*3 
-    Square=[board[y][z] for y in range(r3, r3+3) for z in range(c3, c3+3)]
+    r3=[]
+    if row in "ABC":
+        r3="ABC"
+    if row in "DEF":
+        r3="DEF"
+    if row in "GHI":
+        r3="GHI"
+    c=col-1
+    c=c//3
+    c= 3*c+1
+    c3=range(c, c+2)
+    Square=[board[y+z] for y in r3 for z in c3]
     if i in Square:
         return False
 def solver(board):
     f=None
-    for i in range(10):
-        for j in range(10):
-            if board[i][j]==0
-            f=[i,j]
+    for i in ROW:
+        for j in COL:
+            if board[i+j]==0:
+                f=[i,j]
     if not f:
         return true
     for i in range(1,10):
-        if check(board, i, f[0], f[1]):
-            board[f[0]][f[1]]= i
+        if forward_check(board, i, f[0], f[1]):
+            board[f[0]+f[1]]= i
             if eval(board):
                 return True
-            board[f[0]][f[1]]=0
+            board[f[0]+f[1]]=0
     return False
     #this takes in the constraints on the particular position and returns the heuristic
     #order of approach will be 1-9 
