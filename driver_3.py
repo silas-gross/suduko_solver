@@ -6,7 +6,7 @@ Each sudoku board is represented as a dictionary with string keys and
 int values.
 e.g. my_board['A1'] = 8
 """
-
+import time
 ROW = "ABCDEFGHI"
 COL = "123456789"
 
@@ -102,13 +102,14 @@ if __name__ == '__main__':
 
         # Print starting board. TODO: Comment this out when timing runs.
         print_board(board)
-
+        ts=time.process_time() # measuring length of solving
         # Solve with backtracking
         solved_board = backtracking(board)
 
         # Print solved board. TODO: Comment this out when timing runs.
         print_board(solved_board)
-
+        te=time.process_time()
+        print("time to run %d" %(te-ts))
         # Write board to file
         outfile.write(board_to_string(solved_board))
         outfile.write('\n')
