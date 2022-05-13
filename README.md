@@ -13,5 +13,5 @@ I did run over the boards and do the benchmarking with a shell script,
 included in the zip file
 
 --------------------Test Boards---------------------
-
+Test boards and output are in sudukos_test_start.txt and output_time_test.txt
 
